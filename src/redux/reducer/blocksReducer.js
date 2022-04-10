@@ -5,6 +5,7 @@ const init = {
   secret: [],
   calm: [],
   node: [],
+  loaded: false,
 };
 
 const blocksReducer = (state = init, action) => {
@@ -12,6 +13,7 @@ const blocksReducer = (state = init, action) => {
     case 'FETCH_THAWING_BLOCKS':
       return {
         ...state,
+        loaded: true,
         thawing: [...state.thawing, action.payload],
       };
     case 'FETCH_SECRET_BLOCKS':
@@ -44,21 +46,32 @@ export const getSecretBlocks = (data) => ({
   payload: data,
 });
 
-export const fetchThawingBlocks = async (dispatch) => {
-  fetch(`${url()[0].url}${endPointUrl().BLOCKS}`)
-    .then((res) => res.json())
-    .then((blocks) => dispatch(getThawingBlocks(blocks)));
+export const fetchThawingBlocks = () => async (dispatch) => {
+  try {
+    const res = await fetch(`${url()[0].url}${endPointUrl().BLOCKS}`);
+    const blocks = await res.json();
+    dispatch(getThawingBlocks(blocks.data));
+  } catch (err) {
+    dispatch({ type: 'FETCH_THAWING_BLOCKS_ERROR' });
+  }
+};
+export const fetchSecretBlocks = () => async (dispatch) => {
+  try {
+    const res = await fetch(`${url()[1].url}${endPointUrl().BLOCKS}`);
+    const blocks = await res.json();
+    dispatch(getSecretBlocks(blocks.data));
+  } catch (err) {
+    dispatch({ type: 'FETCH_SECRET_BLOCKS_ERROR' });
+  }
 };
 
-export const fetchSecretBlocks = async (dispatch) => {
-  fetch(`${url()[1].url}${endPointUrl().BLOCKS}`)
-    .then((res) => res.json())
-    .then((blocks) => dispatch(getSecretBlocks(blocks)));
-};
-
-export const fetchCalmBlocks = async (dispatch) => {
-  fetch(`${url()[2].url}${endPointUrl().BLOCKS}`)
-    .then((res) => res.json())
-    .then((blocks) => dispatch(getCalmBlocks(blocks)));
+export const fetchCalmBlocks = () => async (dispatch) => {
+  try {
+    const res = await fetch(`${url()[2].url}${endPointUrl().BLOCKS}`);
+    const blocks = await res.json();
+    dispatch(getCalmBlocks(blocks.data));
+  } catch (err) {
+    dispatch({ type: 'FETCH_CALM_BLOCKS_ERROR' });
+  }
 };
 export default blocksReducer;

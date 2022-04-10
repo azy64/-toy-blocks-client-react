@@ -5,6 +5,7 @@ const init = {
   secretStatus: [],
   calmStatus: [],
   nodeStatus: [],
+  loadedStatus: false,
 };
 
 const statusReducer = (state = init, action) => {
@@ -12,6 +13,7 @@ const statusReducer = (state = init, action) => {
     case 'FETCH_THAWING_STATUS':
       return {
         ...state,
+        loadedStatus: true,
         thawingStatus: [...state.thawingStatus, action.payload],
       };
     case 'FETCH_SECRET_STATUS':
@@ -44,21 +46,33 @@ export const getSecretStatus = (data) => ({
   payload: data,
 });
 
-export const fetchThawingStatus = async (dispatch) => {
-  fetch(`${url()[0].url}${endPointUrl().BLOCKS}`)
-    .then((res) => res.json())
-    .then((blocks) => dispatch(getThawingStatus(blocks)));
+export const fetchThawingStatus = () => async (dispatch) => {
+  try {
+    const rep = await fetch(`${url()[0].url}${endPointUrl().STATUS}`);
+    const data = await rep.json();
+    dispatch(getThawingStatus(data));
+  } catch (err) {
+    dispatch({ type: 'FETCH_THAWING_STATUS_ERROR' });
+  }
 };
 
-export const fetchSecretStatus = async (dispatch) => {
-  fetch(`${url()[1].url}${endPointUrl().BLOCKS}`)
-    .then((res) => res.json())
-    .then((blocks) => dispatch(getSecretStatus(blocks)));
+export const fetchSecretStatus = () => async (dispatch) => {
+  try {
+    const rep = await fetch(`${url()[1].url}${endPointUrl().STATUS}`);
+    const data = await rep.json();
+    dispatch(getSecretStatus(data));
+  } catch (err) {
+    dispatch({ type: 'FETCH_SECRET_STATUS_ERROR' });
+  }
 };
 
-export const fetchCalmStatus = async (dispatch) => {
-  fetch(`${url()[2].url}${endPointUrl().BLOCKS}`)
-    .then((res) => res.json())
-    .then((blocks) => dispatch(getCalmStatus(blocks)));
+export const fetchCalmStatus = () => async (dispatch) => {
+  try {
+    const rep = await fetch(`${url()[2].url}${endPointUrl().STATUS}`);
+    const data = await rep.json();
+    dispatch(getCalmStatus(data));
+  } catch (err) {
+    dispatch({ type: 'FETCH_CALM_STATUS_ERROR' });
+  }
 };
 export default statusReducer;
