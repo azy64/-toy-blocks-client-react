@@ -16,17 +16,20 @@
 }
 
 .blocks {
-  width: 90%;
+  width: 99%;
   margin:auto;
-  background-color: E0E0E0;
   margin-top: 10px;
   margin-bottom: 10px;
+  background-color: #E0E0E0;
+  border-radius: 2px;
 }
 
 .node {
   padding: 10px;
   box-shadow: -2px 3px 6px #888888;
   overflow: hidden;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .node-header-right {
@@ -35,15 +38,17 @@
   padding-top: -90px !important;
 }
 
-.node-header-left{
+/* .node-header-left{
   border: 1px solid red;
 }
+*/
 
 .title {
   color: #4B8BF1;
   font-size: 9px;
   text-align: left;
   width: 100%;
+  padding: 5px;
 }
 
 .description {
@@ -51,6 +56,7 @@
   font-size: 12px;
   text-align: left;
   width: 100%;
+  padding: 5px;
 }
 
 .node-header {
@@ -64,6 +70,7 @@
   color: #979797;
   background-color: transparent;
   vertical-align: text-bottom;
+  text-align: center;
 }
 
 .spin {
@@ -101,4 +108,15 @@
   color: #999EA0;
   font-size: 14px;
   padding-left: 8px;
+}
+
+.closed {
+  overflow: hidden;
+  height: 0px;
+  transition: height 0.5s ease-in-out;
+}
+
+.copened {
+  min-height: 10px;
+
 }

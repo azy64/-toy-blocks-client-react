@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Blocks from './Blocks';
 
 export default function Nodes({ name, url, listBlocks }) {
+  const [clicked, setClicked] = React.useState(false);
   // eslint-disable-next-line max-len
   const displayBlocks = () => listBlocks.map((block, index) => <Blocks key={index} id={block.id} description={block.attributes.data} />);
   return (
@@ -15,15 +16,18 @@ export default function Nodes({ name, url, listBlocks }) {
         </div>
         <div className="node-header-right">
           <div>
-            <span className="spin connected">.</span>
-            <span className="status">ONLINE</span>
-            <button type="button" className="button-press">
-              &#8964;
+            <span className={listBlocks.length > 0 ? 'spin connected' : 'spin off'}>.</span>
+            <span className="status">
+              {' '}
+              {listBlocks.length > 0 ? 'ONLINE' : 'OFFLINE'}
+            </span>
+            <button onClick={() => setClicked(!clicked)} type="button" className="button-press">
+              {clicked ? <>&#8963;</> : <>&#8964;</> }
             </button>
           </div>
         </div>
       </div>
-      <div className="node-body">
+      <div className={clicked ? 'opened' : 'closed'}>
         {
             displayBlocks()
         }
