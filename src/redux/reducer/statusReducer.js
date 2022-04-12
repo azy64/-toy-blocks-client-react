@@ -1,11 +1,10 @@
 import url, { endPointUrl } from '../constants/Constants';
 
 const init = {
-  thawingStatus: [],
-  secretStatus: [],
-  calmStatus: [],
-  nodeStatus: [],
-  loadedStatus: false,
+  thawingStatus: {},
+  secretStatus: {},
+  calmStatus: {},
+  nodeStatus: {},
 };
 
 const statusReducer = (state = init, action) => {
@@ -14,17 +13,17 @@ const statusReducer = (state = init, action) => {
       return {
         ...state,
         loadedStatus: true,
-        thawingStatus: [...state.thawingStatus, action.payload],
+        thawingStatus: action.payload,
       };
     case 'FETCH_SECRET_STATUS':
       return {
         ...state,
-        secretStatus: [...state.secretStatus, action.payload],
+        secretStatus: action.payload,
       };
     case 'FETCH_CALM_STATUS':
       return {
         ...state,
-        calmStatus: [...state.calmStatus, action.payload],
+        calmStatus: action.payload,
       };
     default:
       return state;

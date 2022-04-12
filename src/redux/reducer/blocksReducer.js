@@ -8,24 +8,38 @@ const init = {
   loaded: false,
 };
 
+const checkBlocks = (state) => {
+  if (state.thawing.length === 0) return false;
+  if (state.secret.length === 0) return false;
+  if (state.calm.length === 0) return false;
+  return true;
+};
+
 const blocksReducer = (state = init, action) => {
   switch (action.type) {
     case 'FETCH_THAWING_BLOCKS':
       return {
         ...state,
-        loaded: true,
-        thawing: [...state.thawing, action.payload],
+        thawing: action.payload,
       };
     case 'FETCH_SECRET_BLOCKS':
       return {
         ...state,
-        secret: [...state.secret, action.payload],
+        secret: action.payload,
       };
     case 'FETCH_CALM_BLOCKS':
       return {
         ...state,
-        calm: [...state.calm, action.payload],
+        calm: action.payload,
       };
+    case 'LOADE_NODE_BLOCKS':
+      if (checkBlocks(state)) {
+        return {
+          ...state,
+          loaded: true,
+        };
+      }
+      return state;
     default:
       return state;
   }
@@ -50,7 +64,7 @@ export const fetchThawingBlocks = () => async (dispatch) => {
   try {
     const res = await fetch(`${url()[0].url}${endPointUrl().BLOCKS}`);
     const blocks = await res.json();
-    dispatch(getThawingBlocks(blocks.data));
+    if (blocks.data) { dispatch(getThawingBlocks(blocks.data)); }
   } catch (err) {
     dispatch({ type: 'FETCH_THAWING_BLOCKS_ERROR' });
   }

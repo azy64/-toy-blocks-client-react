@@ -5,7 +5,7 @@ import Blocks from './Blocks';
 
 export default function Nodes({ name, url, listBlocks }) {
   // eslint-disable-next-line max-len
-  const displayBlocks = () => listBlocks.map((block, index) => <Blocks key={index} id={block.id} description={block.data} />);
+  const displayBlocks = () => listBlocks.map((block, index) => <Blocks key={index} id={block.id} description={block.attributes.data} />);
   return (
     <div className="node">
       <div className="node-header">

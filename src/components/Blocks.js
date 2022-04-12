@@ -15,6 +15,6 @@ export default function Blocks({ id, description }) {
 }
 
 Blocks.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
 };
