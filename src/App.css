@@ -4,7 +4,7 @@
 
 .container {
   width: 60%;
-  margin:auto;
+  margin: auto;
 }
 
 .header {
@@ -17,16 +17,16 @@
 
 .blocks {
   width: 99%;
-  margin:auto;
+  margin: auto;
   margin-top: 10px;
   margin-bottom: 10px;
-  background-color: #E0E0E0;
+  background-color: #e0e0e0;
   border-radius: 2px;
 }
 
 .node {
   padding: 10px;
-  box-shadow: -2px 3px 6px #888888;
+  box-shadow: -2px 3px 6px #888;
   overflow: hidden;
   margin-top: 15px;
   margin-bottom: 15px;
@@ -44,7 +44,7 @@
 */
 
 .title {
-  color: #4B8BF1;
+  color: #4b8bf1;
   font-size: 9px;
   text-align: left;
   width: 100%;
@@ -52,7 +52,7 @@
 }
 
 .description {
-  color: #323D43;
+  color: #323d43;
   font-size: 12px;
   text-align: left;
   width: 100%;
@@ -83,40 +83,38 @@
 
 .status {
   font-size: 11px;
-  color: #323D43;
+  color: #323d43;
   vertical-align: text-top;
 }
 
 .off {
   color: red;
 }
+
 .connected {
   color: green;
 }
 
-
-
 .server-name {
   font-size: 17px;
   padding: 8px;
-  color: #323D43;
+  color: #323d43;
   text-align: left;
   width: 100%;
 }
 
 .server-url {
-  color: #999EA0;
+  color: #999ea0;
   font-size: 14px;
   padding-left: 8px;
 }
 
 .closed {
   overflow: hidden;
-  height: 0px;
+  height: 0;
   transition: height 0.5s ease-in-out;
 }
 
 .copened {
   min-height: 10px;
-
 }
