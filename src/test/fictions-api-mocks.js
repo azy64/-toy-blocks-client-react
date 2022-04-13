@@ -101,5 +101,5 @@ const data = {
   },
 };
 
-const fetchMock = jest.fn(() => Promise.resolve(data));
+const fetchMock = () => data;
 export default fetchMock;

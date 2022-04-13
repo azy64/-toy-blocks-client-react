@@ -2,18 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import Nodes from './Nodes';
 import url from '../redux/constants/Constants';
-// import { fetchCalmStatus, fetchSecretStatus, fetchThawingStatus } from './reducer/statusReducer';
-// import { fetchThawingBlocks } from '../redux/reducer/blocksReducer';
 
 export default function Container() {
-// const dispatch = useDispatch();
-  // const { thawing, loaded } = useSelector((state) => state.blocksReducer);
-  // dispatch({ type: 'FETCH_THAWING_BLOCKS' });
-  /* useEffect(() => {
-    dispatch(fetchThawingBlocks());
-  }, []);
-  */
-
   const { thawing, calm, secret } = useSelector((state) => state.blocksReducer);
   const { thawingStatus, secretStatus, calmStatus } = useSelector((state) => state.statusReducer);
   const SERVER = url();
@@ -39,13 +29,10 @@ export default function Container() {
     });
   }
 
-  // console.log('####', calmBlocks);
-
   return (
-    <div className="container">
+    <div className="container" data-testid="container">
       <div className="header">
         <h1>Nodes</h1>
-        {/* loaded && loadedStatus ? nodes : '' */}
         { thawing ? displayData()
           : <div>Loading</div> }
       </div>
