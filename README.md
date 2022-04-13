@@ -2,7 +2,7 @@
 
 # Display Nodes from API
 
-> This app is about rotating elements from a list.
+<img src='./nodes.png'>
 
 
 
