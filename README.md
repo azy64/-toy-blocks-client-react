@@ -1,15 +1,15 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project Rotate Elements
+# Display Nodes from API
 
-> This app is about rotating elements from a list.
+<img src='./nodes.png'>
 
 
 
 ## Built With
 
-- JAVASCRIPT
 - REACT
+- REDUX
 
 ## Live Demo
 
@@ -28,7 +28,7 @@ To get a local copy up and running follow these simple example steps.
 
 ### Setup
 
-1.`git clone https://github.com/azy64/test-candidate-1.git `<br>
+1.`git clone https://github.com/azy64/-toy-blocks-client-react.git `<br>
 2.`npm install` or `yarn `<br>
 3.`yarn start` or `npm start`<br>
 
